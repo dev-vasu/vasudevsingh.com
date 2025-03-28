@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasudev's Portfolio</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .hero {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/diagmonds-light.png');
+            opacity: 0.2;
+            animation: moveBackground 10s linear infinite;
+        }
+        @keyframes moveBackground {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        .skills-container, .projects-container, .education-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .skill, .project, .education {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px; /* Adjusted width for better alignment */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        .skill:hover, .project:hover, .education:hover {
+            transform: translateY(-10px);
+        }
+        .project a {
+            color: cyan;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .project a:hover {
+            text-decoration: underline;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .paragraph {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: justify;
+            line-height: 1.6;
+        }
+    </style>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        function Portfolio() {
+            return (
+                <div>
+                    <section className="hero">
+                        <h1>Vasudev Singh Jamwal</h1>
+                        <p>Machine Learning & Software Engineer | Passionate about Innovation</p>
+                    </section>
+                    
+                    <div className="container">
+                        <section className="skills">
+                            <h2 className="section-title">Skills</h2>
+                            <div className="skills-container">
+                                {["Python", "C++", "Java", "Flutter", "TensorFlow", "PyTorch", "OpenCV"].map(skill => (
+                                    <div key={skill} className="skill">{skill}</div>
+                                ))}
+                            </div>
+                        </section>
+                        
+                        <section className="projects">
+                            <h2 className="section-title">Projects</h2>
+                            <div className="projects-container">
+                                {[
+                                    { title: "Music Recommender System", tech: "Python, Machine Learning", link: "https://github.com/dev-vasu" },
+                                    { title: "Habito - Habit Tracker", tech: "Flutter, Dart", link: "https://github.com/dev-vasu" }
+                                ].map(project => (
+                                    <div key={project.title} className="project">
+                                        <h3>{project.title}</h3>
+                                        <p>{project.tech}</p>
+                                        <a href={project.link} target="_blank">View Project</a>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        <section className="education">
+                            <h2 className="section-title">Education</h2>
+                            <div className="education-container">
+                                {[
+                                    { degree: "Bachelor of Technology in Computer Science", institution: "Lovely Professional University", duration: "2019 - 2023", description: "Graduated with honors, specialized in machine learning and software engineering." }
+                                ].map(education => (
+                                    <div key={education.degree} className="education">
+                                        <h3>{education.degree}</h3>
+                                        <p>{education.institution}</p>
+                                        <p>{education.duration}</p>
+                                        <p>{education.description}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="paragraph">
+                                <p>I completed my Bachelor of Technology in Computer Science from Lovely Professional University, where I graduated with honors. My coursework focused on machine learning, software engineering, and data structures. I actively participated in various projects and internships that helped me gain practical experience and enhance my technical skills.</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<Portfolio />, document.getElementById("root"));
+    </script>
+</body>
+</html>
